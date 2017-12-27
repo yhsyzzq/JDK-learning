@@ -1,4 +1,4 @@
-package com.deppon.thread.example.blockqueue;
+package com.zzq.thread.example.blockqueue;
 
 import java.io.File;
 import java.util.concurrent.BlockingQueue;

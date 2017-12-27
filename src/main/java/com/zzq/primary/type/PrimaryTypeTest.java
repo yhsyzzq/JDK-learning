@@ -1,4 +1,4 @@
-package com.deppon.primary.type;
+package com.zzq.primary.type;
 
 import java.math.BigInteger;
 

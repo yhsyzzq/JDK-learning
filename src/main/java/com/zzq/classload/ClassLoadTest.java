@@ -1,4 +1,4 @@
-package com.deppon.classload;
+package com.zzq.classload;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -25,7 +25,7 @@ public class ClassLoadTest {
 
         DiskClassLoad diskClassLoad = new DiskClassLoad("F://lib");
         try {
-            Class c = diskClassLoad.loadClass("com.deppon.classload.BeanTest");
+            Class c = diskClassLoad.loadClass("com.zzq.classload.BeanTest");
             if (c != null) {
                 Object o = c.newInstance();
 

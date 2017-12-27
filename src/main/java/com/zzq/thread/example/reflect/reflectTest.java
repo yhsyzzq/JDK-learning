@@ -1,10 +1,7 @@
-package com.deppon.thread.example.reflect;
-
-import sun.applet.Main;
+package com.zzq.thread.example.reflect;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 
 /**
  * Created by yhsyzzq on 2017-10-21.

@@ -1,4 +1,4 @@
-package com.deppon.thread.example.future;
+package com.zzq.thread.example.threadpool;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -6,21 +6,23 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
 
 /**
- * 查询匹配的文件数
- * Created by yhsyzzq on 2017/7/25.
+ * Created by yhsyzzq on 2017/7/26.
  */
-public class MatchCounter implements Callable<Integer> {
+public class MatchCounter2 implements Callable<Integer> {
+
     private File directory;
     private String keyword;
+    private ExecutorService pool;
     private int count;
 
-    public MatchCounter(File directory, String keyword) {
+    public MatchCounter2(File directory, String keyword, ExecutorService pool) {
         this.directory = directory;
         this.keyword = keyword;
+        this.pool = pool;
     }
 
     public Integer call() throws Exception {
@@ -32,11 +34,9 @@ public class MatchCounter implements Callable<Integer> {
                 for (File file : files) {
                     if (file.isDirectory()) {
                         //如果获取到的是目录，则递归继续查找
-                        MatchCounter counter = new MatchCounter(file, keyword);
-                        FutureTask<Integer> task = new FutureTask<Integer>(counter);
-                        futures.add(task);
-                        Thread thread = new Thread(task);
-                        thread.start();
+                        MatchCounter2 counter = new MatchCounter2(file, keyword,pool);
+                        Future<Integer> future = pool.submit(counter);
+                        futures.add(future);
                     } else {
                         if (search(file)) {
                             count++;
